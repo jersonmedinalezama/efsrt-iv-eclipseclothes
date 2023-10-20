@@ -15,6 +15,7 @@ import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -33,7 +34,7 @@ public class Producto implements Serializable {
 	private String nombre;
 	
 	@Column(name = "descripcion")
-	private String descripción;
+	private String descripcion;
 	
 	@Column(name = "precio")
 	private double precio;
@@ -48,9 +49,11 @@ public class Producto implements Serializable {
 	@Column(name = "imagen")
 	private String imagen;
 	
+	@ToString.Exclude
 	@ManyToOne
 	private Categoria categoria;
 	
+	@ToString.Exclude
 	@ManyToOne
 	private Usuario usuario;
 

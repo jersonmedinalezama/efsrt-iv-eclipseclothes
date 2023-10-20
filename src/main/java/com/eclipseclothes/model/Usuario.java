@@ -44,7 +44,7 @@ public class Usuario implements Serializable {
 	private String password;
 	
 	@Column(name = "enabled")
-	private boolean enabled;
+	private Boolean enabled;
 	
 	@Column(name = "imagen")
 	private String imagen;

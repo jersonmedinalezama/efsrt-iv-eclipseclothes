@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Eclipse Clothes | Admin</title>
+
+	<!-- boostrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+	<!-- boostrap icon -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+</head>
+
+<body>
+
+	<!-- nav bar -->
+	<div th:replace="~{fragments/user-fragment.html::header-admin}"></div>
+
+	<!-- main -->
+	<main class="container-xl">
+		<h3 class="text-center mt-3">Formulario editar producto</h3>
+		<div>
+			<form th:action="@{/administrador/producto/actualizar}" th:object="${producto}" method="post"
+				enctype="multipart/form-data">
+	
+				<input type="hidden" name="id" th:field="*{id}" th:value="${producto.id}">
+
+				<div class="row">
+					<div class="col-12 col-lg-6 mb-3">
+						<label for="nombre" class="form-label">Producto</label>
+						<input type="text" class="form-control" name="nombre" th:field="*{nombre}"
+							th:value="${producto.nombre}" id="nombre" required>
+					</div>
+					<div class="col-12 col-lg-6 mb-3">
+						<label for="descripcion" class="form-label">Descripción</label>
+						<input type="text" class="form-control" name="descripcion" th:field="*{descripcion}"
+							th:value="${producto.descripcion}" id="descripcion" required>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-12 col-lg-6 mb-3">
+						<label for="precio" class="form-label">Precio</label>
+						<input type="text" class="form-control" name="precio" th:field="*{precio}"
+							th:value="${producto.precio}" id="precio" required>
+					</div>
+					<div class="col-12 col-lg-6 mb-3">
+						<label for="stock" class="form-label">Stock</label>
+						<input type="text" class="form-control" name="stock" th:field="*{stock}"
+							th:value="${producto.stock}" id="stock" required>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-12 col-lg-6 mb-3">
+						<label for="categoria" class="form-label">Categoria</label>
+						<select id="categoria" name="categoria" th:field="*{categoria}" class="form-select"
+							aria-label="Default select example">
+							<option th:each="cat : ${lstCategorias}" th:value="${cat.id}" th:text="${cat.nombre}">
+							</option>
+						</select>
+					</div>
+					<div class="col-12 col-lg-6 mb-3">
+						<label for="file" class="form-label">Imagen</label>
+						<input class="form-control" type="file" id="file" name="file">
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Actualizar</button>
+				<a th:href="@{/administrador/productos}" class="btn btn-danger">Cancelar</a>
+				<button type="reset" class="btn btn-warning">Limpiar</button>
+			</form>
+		</div>
+		
+		<div class="alert alert-success mt-3" role="alert" th:if="${mensaje != null}">
+			<span th:text="${mensaje}"></span>
+		</div>
+
+		<!-- crea nuevo -->
+		<div class="col-12 my-3">
+			<a th:href="@{/administrador/productos}" class="btn btn-info">Regresar a la lista</a>
+		</div>
+		<!-- crear nuevo -->
+
+	</main>
+	<!-- main -->
+
+	<!-- footer -->
+	<div th:insert="~{fragments/user-fragment.html::footer}"></div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

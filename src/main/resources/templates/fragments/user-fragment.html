@@ -1,6 +1,6 @@
 <!-- nav-bar user sin login -->
-<div th:fragment="header">
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div th:fragment="header" class="sticky-top">
+	<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
 
 		<div class="container-xl">
 			<a class="navbar-brand" href="#">Eclipse Clothes</a>
@@ -45,10 +45,68 @@
 
 
 <!-- nav bar user page login -->
-<div th:fragment="header-page-register-and-login">
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div th:fragment="header-page-register-and-login" class="sticky-top">
+	<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
 		<div class="container-xl">
 			<a class="navbar-brand d-block mx-auto" href="#">Eclipse Clothes</a>
+		</div>
+	</nav>
+</div>
+
+<!-- nav-bar user admin -->
+<div th:fragment="header-admin" class="sticky-top">
+	<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+
+		<div class="container-xl">
+			<a class="navbar-brand" href="#">Eclipse Clothes</a>
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-between">
+					<!-- items nav bar -->
+					<div class="navbar-nav me-auto mb-2 mb-lg-0 w-100">
+						<li class="nav-item">
+							<a class="nav-link" aria-current="page" href="#">Categorias</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" aria-current="page" href="#">Productos</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" aria-current="page" href="#">Ordenes</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" aria-current="page" href="#">Usuarios</a>
+						</li>
+					</div>
+					<!-- items nav bar -->
+					
+					<!-- items nav bar perfil -->
+					<div class="d-flex">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								ADMIN - Jerson Medina
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<img th:src="@{/images/jerson.jpg}" class="d-block mx-auto rounded-circle" style="width: 4rem; height: 4rem;" />
+								</li>
+								<li><a class="dropdown-item" href="#">Perfil</a></li>
+								<li><a class="dropdown-item" href="#">Salir</a></li>
+							</ul>
+						</li>
+					</div>
+					<!-- items nav bar perfil -->
+				</ul>
+			</div>
 		</div>
 	</nav>
 </div>
@@ -56,7 +114,7 @@
 
 <!-- footer -->
 <div th:fragment="footer">
-	
+
 	<div class="mt-5">
 		<footer class="text-white text-center text-lg-start" style="background-color: #23242a;">
 			<div class="container-xl p-4">
@@ -81,19 +139,19 @@
 							<a type="button" class="btn btn-floating btn-warning btn-lg">
 								<i class="bi bi-facebook"></i>
 							</a>
-							
+
 							<a type="button" class="btn btn-floating btn-warning btn-lg">
 								<i class="bi bi-twitter-x"></i>
 							</a>
-							
+
 							<a type="button" class="btn btn-floating btn-warning btn-lg">
 								<i class="bi bi-instagram"></i>
 							</a>
-							
+
 							<a type="button" class="btn btn-floating btn-warning btn-lg">
 								<i class="bi bi-tiktok"></i>
 							</a>
-							
+
 						</div>
 					</div>
 					<!--Grid column-->
@@ -104,7 +162,8 @@
 
 						<ul class="fa-ul" style="margin-left: 1.65em;">
 							<li class="mb-3">
-								<span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Trujillo, Av. España 590</span>
+								<span class="fa-li"><i class="fas fa-home"></i></span><span class="ms-2">Trujillo, Av.
+									España 590</span>
 							</li>
 							<li class="mb-3">
 								<span class="fa-li"><i class="fas fa-envelope"></i></span><span

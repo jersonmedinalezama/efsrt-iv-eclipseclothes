@@ -29,11 +29,30 @@
 
 	<!-- main -->
 	<main class="container-xxl">
+
+		<!-- navigation categorias -->
+		<ul class="nav nav-underline justify-content-center">
+			<li class="nav-item" th:each="categoria : ${lstCategorias}">
+				<a class="nav-link active"
+					th:if="${currentCategoria == categoria.nombre}"
+					th:href="@{/categorias(nombre=${categoria.nombre})}" 
+					th:text="${categoria.nombre}">
+				</a>
+				<a class="nav-link"
+					th:if="${currentCategoria != categoria.nombre}"
+					th:href="@{/categorias(nombre=${categoria.nombre})}" 
+					th:text="${categoria.nombre}">
+				</a>
+			</li>
+		</ul>
+		<!-- navigation categorias -->
+
 		<!-- card -->
 		<div class="container-card mt-4">
 			<div th:each="producto : ${lstProductos}">
 				<div class="card">
-					<img th:src="@{/mediafiles/{img} (img=${producto.imagen})}" class="card-img-top object-fit-contain" alt="${producto.imagen}" style="aspect-ratio: 4/3;">
+					<img th:src="@{/mediafiles/{img} (img=${producto.imagen})}" class="card-img-top object-fit-contain"
+						alt="${producto.imagen}" style="aspect-ratio: 4/3;">
 					<div class="card-body bg-light">
 						<h5 class="card-title" th:text="${producto.nombre}"></h5>
 						<p class="fw-bold fs-5" th:text="'S/.' + ${producto.precio}"></p>

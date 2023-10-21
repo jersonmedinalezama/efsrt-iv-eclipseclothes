@@ -131,6 +131,7 @@ public class AdministradorController {
 		productoService.crear(producto);
 		
 		model.addAttribute("producto", new Producto());
+		model.addAttribute("lstCategorias", categoriaService.listar());
 		model.addAttribute("mensaje", "Producto guardado con éxito.");
 		
 		return "productos/crear";

@@ -35,7 +35,7 @@
 						<p class="card-text" th:text="${producto.descripcion}"></p>
 						<p class="card-text fw-bold" th:text=" 'S/. ' + ${producto.precio}"></p>
 						<!-- formulario -->
-						<form>
+						<form th:action="@{/carrito/agregar}" method="post">
 							<input type="hidden" name="id" th:value="${producto.id}">
 							
 							<div class="mb-3 mt-2">

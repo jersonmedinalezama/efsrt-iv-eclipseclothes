@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Eclipse Clothes</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
+
+</head>
+
+<body>
+
+	<!-- nav bar -->
+	<div th:replace="~{fragments/user-fragment.html::header}"></div>
+
+	<!-- main -->
+	<main class="container-xxl">
+
+		<h2 class="text-center">Listado de compras</h2>
+
+		<div class="row mt-2">
+			<div class="col-12 col-lg-8">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Producto</th>
+							<th>Precio</th>
+							<th>Cantidad</th>
+							<th>Subtotal</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody th:if="${orden == null}">
+						<tr>
+							<td colspan="5">No hay productos agregados</td>
+						</tr>
+					</tbody>
+					<tbody th:if="${orden != null}">
+						<tr th:each="dt : ${orden.detalles}">
+							<td>
+								<img th:src="@{/mediafiles/{img} (img=${dt.producto.imagen})}"
+									class=" object-fit-contain" style="width: 64px; height: 64px;">
+								<span th:text="${dt.producto.nombre}"></span>
+							</td>
+							<td th:text="'S/. ' + ${dt.precio}"></td>
+							<td th:text="${dt.cantidad}"></td>
+							<td th:text="'S/. ' + ${dt.subtotal}"></td>
+							<td>
+								<a th:href="@{/carrito/eliminar/{id} (id=${dt.producto.id})}">
+									<i class="bi bi-trash-fill"></i>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="col-12 col-lg-4">
+				<h2 class="card-title">Total orden</h2>
+
+				<ul class="list-group">
+					<li class="list-group-item">
+						<h5 th:text="'S/. ' + ${total}"></h5>
+					</li>
+					<a th:href="@{/orden}" class="btn btn-primary">Ver Orden</a>
+				</ul>
+			</div>
+		</div>
+
+	</main>
+	<!-- main -->
+
+	<!-- footer -->
+	<div th:insert="~{fragments/user-fragment.html::footer}"></div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

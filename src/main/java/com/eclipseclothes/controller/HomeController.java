@@ -1,12 +1,12 @@
 package com.eclipseclothes.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,7 +24,7 @@ public class HomeController {
 	@Autowired
 	private ICategoriaService categoriaService;
 
-	@GetMapping("/")
+	@GetMapping("")
 	public String home(Model model) {
 
 		model.addAttribute("lstProductos", productoService.listar());
@@ -59,6 +59,25 @@ public class HomeController {
 		model.addAttribute("currentCategoria", categoria);
 		
 		return "home/categorias";
+	}
+	
+	@PostMapping("/buscar")
+	public String buscarProducto(@RequestParam(name = "nombre", defaultValue = "Todos") String nombre, Model model) {
+		
+		if(nombre.equals("Todos")) {
+			model.addAttribute("lstProductos", productoService.listar());
+		
+		} else {
+			
+			List<Producto> lista = productoService.listar() 
+									.stream()
+									.filter(p -> p.getNombre().toLowerCase().contains(nombre.toLowerCase()))
+									.toList();
+			
+			model.addAttribute("lstProductos", lista);
+		}
+		
+		return "home/index";
 	}
 	
 	

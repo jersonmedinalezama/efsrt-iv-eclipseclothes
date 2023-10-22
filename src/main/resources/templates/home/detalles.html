@@ -11,14 +11,7 @@
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-	<style>
-		.container-card {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
-			gap: 1rem;
-			justify-content: center;
-		}
-	</style>
+
 
 </head>
 
@@ -28,17 +21,33 @@
 	<div th:replace="~{fragments/user-fragment.html::header}"></div>
 
 	<!-- main -->
-	<main class="container-xxl">
+	<main class="container-xl">
 		<!-- card -->
-		<div class="container-card mt-4">
-			<div th:each="producto : ${lstProductos}">
-				<div class="card">
-					<img th:src="@{/mediafiles/{img} (img=${producto.imagen})}" class="card-img-top object-fit-contain" alt="${producto.imagen}" style="aspect-ratio: 4/3;">
-					<div class="card-body bg-light">
-						<h5 class="card-title" th:text="${producto.nombre}"></h5>
-						<p class="fw-bold fs-5" th:text="'S/.' + ${producto.precio}"></p>
+		<div class="card mb-3 mt-4">
+			<div class="row g-0">
+				<div class="col-md-6">
+					<img th:src="@{/mediafiles/{img} (img=${producto.imagen})}" class="img-fluid rounded-start d-block mx-auto" alt="...">
+				</div>
+				<div class="col-md-6">
+					<div class="card-body">
+						<h4 class="card-title" th:text="${producto.nombre}">Card title</h4>
+						<p class="card-text fs-6 fw-bold" th:text=" 'Categoria: ' + ${producto.categoria.nombre}"></p>
 						<p class="card-text" th:text="${producto.descripcion}"></p>
-						<a th:href="@{/detalles/{id} (id=${producto.id})}" class="btn btn-primary d-block mx-auto">Ver detalles</a>
+						<p class="card-text fw-bold" th:text=" 'S/. ' + ${producto.precio}"></p>
+						<!-- formulario -->
+						<form>
+							<input type="hidden" name="id" th:value="${producto.id}">
+							
+							<div class="mb-3 mt-2">
+								<label for="cantidad" class="form-label">Cantidad</label>
+								<input type="number" class="form-control" id="cantidad" name="cantidad"
+									placeholder="ingrese cantidad">
+							</div>
+							
+							<input type="submit" class="btn btn-primary" name="agregar" value="Agregar al carrito">
+							
+						</form>
+						<!-- formulario -->
 					</div>
 				</div>
 			</div>

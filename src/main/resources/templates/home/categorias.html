@@ -57,7 +57,7 @@
 						<h5 class="card-title" th:text="${producto.nombre}"></h5>
 						<p class="fw-bold fs-5" th:text="'S/.' + ${producto.precio}"></p>
 						<p class="card-text" th:text="${producto.descripcion}"></p>
-						<a href="#" class="btn btn-primary d-block mx-auto">Ver detalles</a>
+						<a th:href="@{/detalles/{id} (id=${producto.id})}" class="btn btn-primary d-block mx-auto">Ver detalles</a>
 					</div>
 				</div>
 			</div>
